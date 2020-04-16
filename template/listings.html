@@ -108,25 +108,25 @@
         <div class="row">
           <div class="col-lg-8">
             {%for business in business1 %}
-            <div class="card mb-3" style="max-width: 700px; height:400px;">
+            <div class="card mb-3" style="max-width: 600px; height:200px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="{{business.image.url}}" class="card-img" alt="..." style="width:105%; height:29.2vw; object-fit:cover;">
+                  <img src="{{business.image.url}}" class="card-img" alt="..." style="width:100%; height:14.6vw; object-fit:cover;">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
                     <span class="category" style="border:2px solid white;background-color:pink;border-radius:10px;padding:5px;">{{business.category}}</span><br>
                     <br>
-                    <h5 class="card-title">{{business.business_name}}</h5>
-                    <p class="card-text">{{business.pincode}}, {{business.landmark}},{{business.address}}</p>
+                    <a href={% url 'detail' pk=business.pk %}><h5 class="card-title">{{business.business_name}}</h5></a>
+                    <p class="card-text">{{business.address}}</p>
                     <p class="card-text"><span style="font-weight:bold;">Contact</span>:+91 {{business.phone}}</p>
-                    <p class="card-text"><span style="font-weight:bold;">Email</span>: {{business.email}}</p>
+                    <!-- <p class="card-text"><span style="font-weight:bold;">Email</span>: {{business.email}}</p>
 
-                    <p class="card-text">{{business.Description}}</p>
-                    Visit<a href="{{business.website}}" style="text-decoration: none;"><span style="color:green;"> {{business.website}}</span></a> for more options.<br>
+                    <p class="card-text">{{business.Description}}</p> -->
+                    <!-- Visit<a href="{{business.website}}" style="text-decoration: none;"><span style="color:green;"> {{business.website}}</span></a> for more options.<br>
                     
                     
-                      <a href="#" style="margin-top:22px;" class="btn btn-primary">More Info</a>
+                      <a href="#" style="margin-top:22px;" class="btn btn-primary">More Info</a> -->
                     
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                   </div>
@@ -464,7 +464,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-7 text-left border-primary">
-            <h2 class="font-weight-light text-primary">Trending Today</h2>
+            <h2 class="font-weight-light text-primary">New Business</h2>
           </div>
         </div>
         <div class="row mt-5">

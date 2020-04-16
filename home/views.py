@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.contrib import auth
@@ -183,3 +183,10 @@ class ActivateAccount(View):
         else:
             messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
             return redirect('/Thanks')
+
+
+
+def detail(request,pk):
+    
+    s=get_object_or_404(Business_List,pk=pk)
+    return render(request,'details.html',{'s':s})
