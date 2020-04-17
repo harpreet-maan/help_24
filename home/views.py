@@ -65,7 +65,7 @@ def list(request):
 
 def listings(request):
     business1=Business_List.objects.all()
-    return render(request, 'listings.html',{'business1':business1})
+    return render(request, 'listings.html',{'business1':business1,'numbers':range(6)})
 
 
 def listingssingle(request):

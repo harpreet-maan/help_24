@@ -462,21 +462,24 @@
 
     <div class="site-section bg-light">
       <div class="container">
+        
         <div class="row mb-5">
           <div class="col-md-7 text-left border-primary">
             <h2 class="font-weight-light text-primary">New Business</h2>
           </div>
         </div>
+        
         <div class="row mt-5">
+          {% for business in business1 %}
           <div class="col-lg-6">
-
+            
             <div class="d-block d-md-flex listing">
-              <a href="#" class="img d-block" style="background-image: url({% static 'images/img_2.jpg' %})"></a>
+              <a href={% url 'detail' pk=business.pk %} class="img d-block" style="background-image: url({{business.image.url}})"></a>
               <div class="lh-content">
-                <span class="category">Real Estate</span>
+                <span class="category">{{business.category}}</span>
                 <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="#">House with Swimming Pool</a></h3>
-                <address>Don St, Brooklyn, New York</address>
+                <h3><a href={% url 'detail' pk=business.pk %}>{{business.business_name}}</a></h3>
+                <address>{{business.address}}</address>
                 <p class="mb-0">
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
@@ -487,7 +490,14 @@
                 </p>
               </div>
             </div>
-            <div class="d-block d-md-flex listing">
+            
+          </div>
+          {% endfor  %}
+        </div>
+        
+      </div>
+    </div>
+            <!-- <div class="d-block d-md-flex listing">
                 <a href="#" class="img d-block" style="background-image: url({% static 'images/img_3.jpg' %})"></a>
                 <div class="lh-content">
                   <span class="category">Furniture</span>
@@ -584,7 +594,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     
     <div class="site-section bg-white">
       <div class="container">
