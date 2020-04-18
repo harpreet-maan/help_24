@@ -133,6 +133,8 @@
                 </div>
               </div>
             </div>
+            {% empty %}
+									<h2><span class="adprice">We Don't Find any matching result of your search.</span></h2>
             {% endfor %}
             
             <!-- <div class="row">
@@ -359,13 +361,46 @@
             <!-- </div> -->
 
             <div class="col-12 mt-5 text-center">
+              {% if business1.has_other_pages %}
+                <div class="custom-pagination">
+                  {% if business1.has_previous %}
+                    <a href="?page={{ business1.previous_page_number }}">&laquo;</a>
+                  {% else %}
+                    <a class="disabled"><span>&laquo;</span></a>
+                  {% endif %}
+                  {% for i in business1.paginator.page_range %}
+                    {% if business1.number == i %}
+                      <a class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></a>
+                    {% else %}
+                      <a href="?page={{ i }}">{{ i }}</a>
+                    {% endif %}
+                  {% endfor %}
+                  {% if business1.has_next %}
+                    <a href="?page={{ business1.next_page_number }}">&raquo;</a>
+                  {% else %}
+                    <a class="disabled"><span>&raquo;</span></a>
+                  {% endif %}   
+                </div>
+              {% endif %}
+              <!-- {% if business1.has_other_pages %}
               <div class="custom-pagination">
+                {% if business1.has_previous %}
                 <span>1</span>
-                <a href="#">2</a>
+                <a href="?page={{ users.previous_page_number }}">Prev</a>
+                {% endif %}
                 <a href="#">3</a>
+
+                {% for pages in business1.paginator.page_range %}
+                
+                <a href="?page={{pages}}">{{pages}}</a>
+                {% endfor %}
+                {% if business1.has_next %}
+                <a href="?page={{business1.next_page_number }}">Next</a>
+                {% endif %}
+						  {% endif %}
                 <span class="more-page">...</span>
                 <a href="#">10</a>
-              </div>
+              </div> -->
             </div>
 
           </div>
@@ -470,7 +505,7 @@
         </div>
         
         <div class="row mt-5">
-          {% for business in business1 %}
+          {% for business in business2 %}
           <div class="col-lg-6">
             
             <div class="d-block d-md-flex listing">
@@ -705,9 +740,9 @@
             </div>
           </div>
           <div class="col-md-3">
-            <form action="#" method="post">
+            <form action="{% url 'listings' %}" method="GET">
               <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
+                <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
                 </div>

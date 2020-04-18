@@ -8,7 +8,7 @@ class Trending(models.Model):
     title=models.CharField(max_length=200)
 
 class FindBusiness(models.Model):
-    title= models.CharField(max_length=200)
+    category= models.CharField(max_length=200)
     img=models.ImageField(upload_to='pics1')
 
 

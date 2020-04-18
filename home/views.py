@@ -13,6 +13,9 @@ from django.template.loader import render_to_string
 from  .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from django.views.generic.base import View
+from django.db.models import Count, Q
+from django.core.paginator import Paginator
+
 # Create your views here.
 
 from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List
@@ -55,7 +58,7 @@ def list(request):
 
         business=Business_List(business_name=Bname,pincode=pin,email=Email,category=category,
                                    phone=Bphone,address=Address,landmark=Landmark,website=Waddress,
-                                    Description=Adescription,image='pics/'+Image)
+                                    Description=Adescription,image="pics/"+Image)
         business.save()
         return redirect('/')
     
@@ -65,7 +68,28 @@ def list(request):
 
 def listings(request):
     business1=Business_List.objects.all()
-    return render(request, 'listings.html',{'business1':business1,'numbers':range(6)})
+    business2=Business_List.objects.all()
+
+    search_query = request.GET.get('search')
+    if search_query:
+        business1 = business1.filter(
+            Q(business_name__icontains = search_query) |
+            Q(category__icontains = search_query) 
+            # Q(condition__icontains = search_query) |
+            # Q(brand__brand_name__icontains = search_query) |
+            # Q(owner__username__icontains = search_query)
+        )
+
+    # s1=category
+    # if s1:
+    #     business1=business1.filter(
+    #         Q(category_icontains = search_query)
+    #     )       
+ 
+    paginator = Paginator(business1, 1)
+    page = request.GET.get('page')
+    business1 = paginator.get_page(page)
+    return render(request, 'listings.html',{'business1':business1,'business2':business2,'numbers':range(6)})
 
 
 def listingssingle(request):

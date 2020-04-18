@@ -278,9 +278,9 @@
             </div>
           </div>
           <div class="col-md-3">
-            <form action="#" method="post">
+            <form action="{% url 'listings' %}" method="GET">
               <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
+                <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
                 </div>
@@ -290,7 +290,8 @@
         </div>
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
-            <div class="border-top pt-5">
+            <div class="
+            -top pt-5">
             <p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
