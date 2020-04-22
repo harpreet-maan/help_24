@@ -47,16 +47,16 @@
         <div class="row align-items-center">
           
           <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="index" class="text-white mb-0">Help_24</a></h1>
+            <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="text-white mb-0">Help_24</a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="index">Home</a></li>
-                <li><a href="listings">Listing</a></li>
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'listings' %}">Listing</a></li>
                 <li class="has-children">
-                  <a href="about">About</a>
+                  <a href="{% url 'about' %}">About</a>
                   <ul class="dropdown">
                     <li><a href="#">The Company</a></li>
                     <li><a href="#">The Leadership</a></li>
@@ -65,15 +65,15 @@
                   </ul>
                 </li>
                 <li><a href="blog">Blog</a></li>
-                <li class="mr-5"><a href="contact">Contact</a></li>
-                <li><a href="list" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>Add listing</a></li>
+                <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'list' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>Add listing</a></li>
 
                 {% if user.is_authenticated %}
                   <li class="active" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}</li>
-                  <li class="ml-xl-3 "><a href="logout">LogOut</a></li>
+                  <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
                 {% else %}
-                  <li class="ml-xl-3 login"><a href="login"><span class="border-left pl-xl-4"></span>Log In</a></li>
-                  <li><a href="register" class="cta"><span class="bg-primary text-white rounded">Register</span></a></li>
+                  <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
+                  <li><a href="{% url 'Register' %}" class="cta"><span class="bg-primary text-white rounded">Register</span></a></li>
                 {% endif %}
               </ul>
             </nav>
@@ -166,7 +166,7 @@
         <div class="card h-100">
           <img src="{{find.img.url}}" class="card-img-top img-fluid" alt="" style="width:100%; height:15vw; object-fit:cover;">
           <div class="card-body">
-            <a href={% url 'listings'  %} name='search' class="card-link" style="color:black; text-align: centre;">{{find.category}}</a>
+            <a href="{% url 'category' find.id %}" ><h5 class="card-title"  style="color:black; text-align: centre;">{{find.category}}</h5></a>
             
           </div>
         </div>
@@ -375,15 +375,18 @@
         </div>
         <div class="overlap-category mb-5">
           <div class="row align-items-stretch no-gutters">
+            {% for iconn in icons %}
             <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-              <a href="#" class="popular-category h-100">
-                <span class="icon"><span class="flaticon-water"></span></span>
-                <span class="caption mb-2 d-block">Plumbers</span>
+              <a href="{% url 'category' iconn.id %}" class="popular-category h-100">
+                <span class="icon"><span class="{{iconn.clas}}"></span></span>
+                <span class="caption mb-2 d-block">{{iconn.category}}</span>
                 <span class="number">1,921</span>
               </a>
+              
             </div>
+            {% endfor %}
 
-            <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <!-- <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
               <a href="#" class="popular-category h-100">
                 <span class="icon"><span class="flaticon-gym"></span></span>
                 <span class="caption mb-2 d-block">Gyms</span>
@@ -422,7 +425,7 @@
                 <span class="caption mb-2 d-block">Others</span>
                 <span class="number">298</span>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
         
@@ -449,7 +452,7 @@
               <div class="lh-content">
                 <span class="category">{{new.category}}</span>
                 <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="listingssingle">{{new.title}}</a></h3>
+                <h3><a href="#">{{new.title}}</a></h3>
                 <address>{{new.address}}</address>
                 <p class="mb-0">
                   <span class="icon-star text-warning"></span>
@@ -607,10 +610,10 @@
               <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Navigations</h2>
                 <ul class="list-unstyled">
-                  <li><a href="about">About Us</a></li>
+                  <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="#">Testimonials</a></li>
-                  <li><a href="contact">Contact Us</a></li>
+                  <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
               <div class="col-md-3">

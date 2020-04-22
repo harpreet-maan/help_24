@@ -32,14 +32,14 @@
   <body>
 
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: red;">
-        <a href="index" class="navbar-brand"><strong>Help_24</strong>
+        <a href="{% url 'index' %}" class="navbar-brand"><strong>Help_24</strong>
             <span class="icon"><span class=""></span></span>
             
         </a>
         <h3 style="color: white;">     <strong>for business owners</strong></h3>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="login" class="nav-link" style="color:bisque;"><strong>Login</strong></a></li>
-            <li class="nav-item"><a href="register" class="nav-link" style="color:bisque;"><strong>Register</a></strong></li>
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link" style="color:bisque;"><strong>Login</strong></a></li>
+            <li class="nav-item"><a href="{% url 'register' %}" class="nav-link" style="color:bisque;"><strong>Register</a></strong></li>
         </ul>
       </nav>
       
@@ -115,7 +115,7 @@
                   <div class="row form-group">
                     <div class="col-md-12">
                       <label class="text-black" for="img">Select Image for Business</label> 
-                      <input type="file" name="image" id="img" class="form-control" name="img" accept="image/*">
+                      <input type="file" name="image" id="img" class="form-control"  accept="image/*">
                     </div>
                   </div>
 
@@ -150,10 +150,10 @@
                             <div class="col-md-3">
                               <h2 class="footer-heading mb-4">Navigations</h2>
                               <ul class="list-unstyled">
-                                <li><a href="about">About Us</a></li>
+                                <li><a href="{% url 'about' %}">About Us</a></li>
                                 <li><a href="#">Services</a></li>
                                 <li><a href="#">Testimonials</a></li>
-                                <li><a href="contact">Contact Us</a></li>
+                                <li><a href="{% url 'contact' %}">Contact Us</a></li>
                               </ul>
                             </div>
                             <div class="col-md-3">

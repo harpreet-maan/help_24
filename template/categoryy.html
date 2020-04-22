@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+             {% if busin %}   
+              {%for busin1 in busin %}
+              <div class="card mb-3" style="max-width: 600px; height:200px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{{busin1.image.url}}" class="card-img" alt="..." style="width:100%; height:14.6vw; object-fit:cover;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <span class="category" style="border:2px solid white;background-color:pink;border-radius:10px;padding:5px;">{{busin1.category}}</span><br>
+                      <br>
+                      <a href="#"><h5 class="card-title">{{busin1.business_name}}</h5></a>
+                      <p class="card-text">{{busin1.address}}</p>
+                      <p class="card-text"><span style="font-weight:bold;">Contact</span>:+91 {{busin1.phone}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- {% empty %}
+                                      <h2><span class="adprice">We Don't Find any matching result of your search.</span></h2> -->
+              {% endfor %}
+              {% else %}
+              <h2><span class="adprice">We Don't Find any matching result of your search.</span></h2>
+               {% endif %}
+              </div>
+              </div>
+              </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

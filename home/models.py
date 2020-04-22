@@ -8,8 +8,10 @@ class Trending(models.Model):
     title=models.CharField(max_length=200)
 
 class FindBusiness(models.Model):
-    category= models.CharField(max_length=200)
+    category= models.ForeignKey('category',on_delete=models.CASCADE)
     img=models.ImageField(upload_to='pics1')
+    clas = models.CharField(max_length=30)
+    
 
 
 class UserRegister(models.Model):
@@ -38,7 +40,7 @@ class Business_List(models.Model):
     business_name=models.CharField(max_length=50)
     pincode = models.IntegerField()
     email=models.EmailField(max_length=200)
-    category=models.CharField(max_length=30)
+    category = models.ForeignKey('category',on_delete=models.CASCADE)
     phone=models.BigIntegerField()
     address=models.CharField(max_length=200)
     landmark=models.CharField(max_length=100)
@@ -48,3 +50,10 @@ class Business_List(models.Model):
 
     def __str__(self):
         return self.business_name
+
+class category(models.Model):
+    name = models.CharField(max_length=50)
+    
+    
+    def __str__(self):
+        return self.name

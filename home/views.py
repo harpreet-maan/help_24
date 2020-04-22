@@ -18,14 +18,15 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
-from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List
+from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List, category
 
 
 def index(request):
-    finds = FindBusiness.objects.all()
+    finds = FindBusiness.objects.all()[:4]
+    icons= FindBusiness.objects.all()
     news = Trending.objects.all()
 
-    return render(request, 'index.html', {'finds': finds, 'news': news})
+    return render(request, 'index.html', {'finds': finds, 'news': news,'icons':icons})
 
 
 def about(request):
@@ -93,7 +94,14 @@ def listings(request):
 
 
 def listingssingle(request):
-    return render(request, 'listings-single.html')
+
+    # busin=Business_List.objects.filter(category_startswith=category)
+    # busin=get_object_or_404(Business_List,category=category)
+    return render(request, 'listingssingle.html')
+
+def categoryy(request,category):
+    busin=Business_List.objects.filter(category=category)
+    return render(request,'categoryy.html',{'busin':busin})
 
 
 def login(request):
@@ -214,3 +222,12 @@ def detail(request,pk):
     
     s=get_object_or_404(Business_List,pk=pk)
     return render(request,'details.html',{'s':s})
+
+
+def  categoryList(request,id):
+    Category = category.objects.get(id = id)
+    business1 = Business_List.objects.filter(category = Category)
+    context = {
+        "business1":business1
+    }
+    return render(request,'listings.html',context)
