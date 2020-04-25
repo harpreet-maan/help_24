@@ -18,7 +18,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
-from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List, category
+from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List, category,mailing
 
 
 def index(request):
@@ -42,7 +42,29 @@ def blogsingle(request):
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    if request.method=="POST":
+        first_name=request.POST['firstname']
+        last_name=request.POST['lastname']
+        email=request.POST['email']
+        subject=request.POST['subject']
+        message=request.POST['message']
+
+        customer=mailing(firstname=first_name,lastname=last_name,email=email,subject=subject,message=message)
+        customer.save()
+        
+        send_mail(
+                    subject,
+                    message,
+                    email,
+                    ['preethappy000000@gmail.com'],
+                    fail_silently=False
+
+                 )
+        return render(request,'index.html')
+
+    else:
+
+        return render(request, 'contact.html')
 
 def list(request):
     if request.method=="POST":
@@ -69,17 +91,17 @@ def list(request):
 
 def listings(request):
     business1=Business_List.objects.all()
-    business2=Business_List.objects.all()
+    # business2=Business_List.objects.all()
 
     search_query = request.GET.get('search')
     if search_query:
         business1 = business1.filter(
             Q(business_name__icontains = search_query) |
-            Q(category__icontains = search_query) 
+            Q(category__name__icontains = search_query) 
             # Q(condition__icontains = search_query) |
             # Q(brand__brand_name__icontains = search_query) |
             # Q(owner__username__icontains = search_query)
-        )
+         )
 
     # s1=category
     # if s1:
@@ -90,7 +112,7 @@ def listings(request):
     paginator = Paginator(business1, 1)
     page = request.GET.get('page')
     business1 = paginator.get_page(page)
-    return render(request, 'listings.html',{'business1':business1,'business2':business2,'numbers':range(6)})
+    return render(request, 'listings.html',{'business1':business1,'numbers':range(6)})
 
 
 def listingssingle(request):
@@ -201,8 +223,9 @@ class ActivateAccount(View):
         try:
             #uid = force_text(urlsafe_base64_decode(uidb64))
             uid = urlsafe_base64_decode(uidb64).decode()
-            user = get_user_model()
-            user.pk=uid
+            user = User.objects.get(pk=uid)
+            #user.pk=uid
+            print(user)
         except (TypeError, ValueError, OverflowError, user.DoesNotExist):
             user = None
 
@@ -211,7 +234,7 @@ class ActivateAccount(View):
             user.save()
             login(request)
             messages.success(request, ('Your account have been confirmed.'))
-            return render(request,'home.html')
+            return render(request,'index.html')
         else:
             messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
             return redirect('/Thanks')
