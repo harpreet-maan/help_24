@@ -63,7 +63,7 @@
                 </li>
                 <li><a href="blog">Blog</a></li>
                 <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
-                <li><a href="{% url 'list' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
+                <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 {% if user.is_authenticated %}
                   <li class="active" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user.first_name}}</li>
@@ -280,7 +280,7 @@
                 <h2 class="footer-heading mb-4">Navigations</h2>
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
-                  <li><a href="#">Services</a></li>
+                  <li><a href="{% url 'listings' %}">Services</a></li>
                   <li><a href="#">Testimonials</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>

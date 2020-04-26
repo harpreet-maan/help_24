@@ -51,7 +51,7 @@
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'listings' %}">Listing</a></li>
+                <li><a href="{% url 'listings' %}">Services</a></li>
                 <li class="has-children">
                   <a href="{% url 'index' %}">About</a>
                   <ul class="dropdown">
@@ -63,7 +63,7 @@
                 </li>
                 <li><a href="blog">Blog</a></li>
                 <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
-                <li><a href="{% url 'list' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
+                <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
 
@@ -136,6 +136,13 @@
             {% empty %}
 									<h2><span class="adprice">We Don't Find any matching result of your search.</span></h2>
             {% endfor %}
+            
+
+
+
+
+
+
             
             <!-- <div class="row">
               <div class="col-lg-6">
@@ -382,6 +389,10 @@
                   {% endif %}   
                 </div>
               {% endif %}
+
+
+
+              
               <!-- {% if business1.has_other_pages %}
               <div class="custom-pagination">
                 {% if business1.has_previous %}
@@ -408,14 +419,14 @@
 
             <div class="mb-5">
               <h3 class="h5 text-black mb-3">Filters</h3>
-              <form action="#" method="post">
+              <form action="{% url 'filtering' %}" method="GET">
                 <div class="form-group">
-                  <input type="text" placeholder="What are you looking for?" class="form-control">
+                  <input type="text" name="search" placeholder="What are you looking for?" class="form-control">
                 </div>
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="" id="">
+                      <select class="form-control" name="search " id="">
                         <option value="">All Categories</option>
                         <option value="" selected="">Plumbers</option>
                         <option value="">Gyms &amp;  Parks</option>
@@ -428,9 +439,12 @@
                 </div>
                 <div class="form-group">
                   <!-- select-wrap, .wrap-icon -->
-                  <div class="wrap-icon">
+                  <!-- <div class="wrap-icon">
                     <span class="icon icon-room"></span>
                     <input type="text" placeholder="Location" class="form-control">
+                  </div> -->
+                  <div class="col-md-12">
+                    <input type="submit" value="Submit" class="btn btn-primary py-2 px-4 text-white">
                   </div>
                 </div>
               </form>
@@ -725,7 +739,7 @@
                 <h2 class="footer-heading mb-4">Navigations</h2>
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
-                  <li><a href="#">Services</a></li>
+                  <li><a href="{% url 'listings' %}">Services</a></li>
                   <li><a href="#">Testimonials</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>

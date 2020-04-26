@@ -54,7 +54,7 @@
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'listings' %}">Listing</a></li>
+                <li><a href="{% url 'listings' %}">Services</a></li>
                 <li class="has-children">
                   <a href="{% url 'about' %}">About</a>
                   <ul class="dropdown">
@@ -611,7 +611,7 @@
                 <h2 class="footer-heading mb-4">Navigations</h2>
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
-                  <li><a href="#">Services</a></li>
+                  <li><a href="{% url 'listings' %}">Services</a></li>
                   <li><a href="#">Testimonials</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>

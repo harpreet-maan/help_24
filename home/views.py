@@ -91,7 +91,7 @@ def list(request):
 
 def listings(request):
     business1=Business_List.objects.all()
-    # business2=Business_List.objects.all()
+    #business2=Business_List.objects.all()
 
     search_query = request.GET.get('search')
     if search_query:
@@ -109,9 +109,18 @@ def listings(request):
     #         Q(category_icontains = search_query)
     #     )       
  
+    
+    
+
+
+
+
     paginator = Paginator(business1, 1)
     page = request.GET.get('page')
     business1 = paginator.get_page(page)
+
+
+    
     return render(request, 'listings.html',{'business1':business1,'numbers':range(6)})
 
 
@@ -254,3 +263,39 @@ def  categoryList(request,id):
         "business1":business1
     }
     return render(request,'listings.html',context)
+
+
+
+def filtering(request):
+    business1=Business_List.objects.all()
+    #business2=Business_List.objects.all()
+
+    search_query = request.GET.get('search')
+    if search_query:
+        business1 = business1.filter(
+            Q(business_name__icontains = search_query) |
+            Q(category__name__icontains = search_query) 
+            # Q(condition__icontains = search_query) |
+            # Q(brand__brand_name__icontains = search_query) |
+            # Q(owner__username__icontains = search_query)
+         )
+
+    # s1=category
+    # if s1:
+    #     business1=business1.filter(
+    #         Q(category_icontains = search_query)
+    #     )       
+ 
+    
+    
+
+
+
+
+    paginator = Paginator(business1, 1)
+    page = request.GET.get('page')
+    business1 = paginator.get_page(page)
+
+
+    
+    return render(request, 'filtering.html',{'business1':business1,'numbers':range(6)})
