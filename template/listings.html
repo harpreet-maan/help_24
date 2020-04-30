@@ -52,22 +52,26 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'listings' %}">Services</a></li>
-                <li class="has-children">
+                <li>
                   <a href="{% url 'index' %}">About</a>
-                  <ul class="dropdown">
+                  <!-- <ul class="dropdown">
                     <li><a href="#">The Company</a></li>
                     <li><a href="#">The Leadership</a></li>
                     <li><a href="#">Philosophy</a></li>
                     <li><a href="#">Careers</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
-                <li><a href="blog">Blog</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
                 <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
+                <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
+                {% else %}
 
                 <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
 
                 <li><a href="{% url 'register' %}" class="cta"><span class="bg-primary text-white rounded">Register</span></a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -429,11 +433,20 @@
                       <select class="form-control" name="search " id="">
                         <option value="">All Categories</option>
                         <option value="" selected="">Plumbers</option>
-                        <option value="">Gyms &amp;  Parks</option>
+                        <option value="">Gyms</option>
                         <option value="">Carpenter</option>
-                        <option value="">Electronics</option>
+                        <option value="">Electricians</option>
                         <option value="">Movers</option>
-                        <option value="">Others</option>
+                        <option value="">Saloons &amp; Parlour</option>
+                        <option value="">Automobile</option>
+                        <option value="">Bakery</option>
+                        <option value="">Restaurants</option>
+                        <option value="">Grocery</option>
+                        <option value="">Cooks &amp; Maid</option>
+                        <option value="">Chemists</option>
+                        <option value="">Caterers</option>
+                        <option value="">Civil Contractors</option>
+                        <option value="">Doctors</option>
                       </select>
                     </div>
                 </div>
@@ -450,7 +463,7 @@
               </form>
             </div>
             
-            <div class="mb-5">
+            <!-- <div class="mb-5">
               <form action="#" method="post">
                 <div class="form-group">
                   <p>Business around selected destination</p>
@@ -459,7 +472,7 @@
                   <input type="range" min="1" max="100" value="20" data-rangeslider>
                 </div>
               </form>
-            </div>
+            </div> -->
 
             <div class="mb-5">
               <form action="#" method="post">
@@ -740,7 +753,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <li><a href="#">Testimonials</a></li>
+                  <!-- <li><a href="#">Testimonials</a></li> -->
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>

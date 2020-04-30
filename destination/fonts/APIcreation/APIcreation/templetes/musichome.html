@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html'%}
+{% block content%}
+<!--<h1>This is my first music page</h1>
+<p>hello</p>-->
+
+<h2>My Name is {{Name}}</h2>
+
+
+
+<form action="add">
+
+    enter 1st value <input type="text" name='num1'><br>
+    enter 2nd value <input type="text" name='num2'><br>
+
+    <input type="submit">
+</form>
+
+{% endblock %}
+</body>
+</html>

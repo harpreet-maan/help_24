@@ -21,6 +21,9 @@
 
     <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/flaticon3/font1/flaticon.css' %}">
+    <!-- 
+      
+     -->
 
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
@@ -55,16 +58,17 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'listings' %}">Services</a></li>
-                <li class="has-children">
-                  <a href="{% url 'about' %}">About</a>
-                  <ul class="dropdown">
+                <!-- <li class="has-children"> -->
+                  <li>
+                    <a href="{% url 'about' %}">About</a>
+                  <!-- <ul class="dropdown">
                     <li><a href="#">The Company</a></li>
                     <li><a href="#">The Leadership</a></li>
                     <li><a href="#">Philosophy</a></li>
                     <li><a href="#">Careers</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
-                <li><a href="blog">Blog</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
                 <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
@@ -72,7 +76,7 @@
                   <li class="active" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}</li>
                   <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
                 {% else %}
-                  <li class="ml-xl-3 login"><a href="{% url 'list' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
+                  <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
                   <li><a href="{% url 'register' %}" class="cta"><span class="bg-primary text-white rounded">Register</span></a></li>
                 {% endif %}
               </ul>
@@ -138,11 +142,11 @@
 
             <div class="row text-left trending-search" data-aos="fade-up"  data-aos-delay="300">
               <div class="col-12">
-                <h2 class="d-inline-block">Trending Search:</h2>
-                <a href="#">Beautician</a>
-                <a href="#">Plumber</a>
-                <a href="#">AC Repair</a>
-                <a href="#">Electrician</a>
+                <h2 class="d-inline-block">Example:</h2>
+                <a href="#" disabled>Gyms</a>
+                <a href="#" disabled>Plumbers</a>
+                <a href="#" disabled>Repair</a>
+                <a href="#" disabled>Electrician</a>
               </div>
             </div>
 
@@ -206,20 +210,21 @@
         
         <div class="row">
           <div class="col-12">
-            <h2 class="h5 mb-4 text-black">Featured Ads</h2>
+            <h2 class="font-weight-light text-primary">Look at Business...</h2>
           </div>
         </div>
+        <br>
         <div class="row">
           <div class="col-12  block-13">
             <div class="owl-carousel nonloop-block-13">
-              
+              {% for service1 in business %}
               <div class="d-block d-md-flex listing vertical">
-                <a href="listingssingle" class="img d-block" style="background-image: url({% static 'images/img_1.jpg' %})"></a>
+                <a href={% url 'detail' pk=service1.pk %} class="img d-block" style="background-image: url({{service1.image.url}})"></a>
                 <div class="lh-content">
-                  <span class="category">Cars &amp; Vehicles</span>
+                  <span class="category">{{service1.category}}</span>
                   <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                  <h3><a href="listingssingle">New Black Car</a></h3>
-                  <address>Don St, Brooklyn, New York</address>
+                  <h3><a href={% url 'detail' pk=service1.pk %}>{{service1.business_name}}</a></h3>
+                  <address>{{service1.address}}</address>
                   <p class="mb-0">
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
@@ -230,8 +235,9 @@
                   </p>
                 </div>
               </div>
+              {% endfor %}
 
-              <div class="d-block d-md-flex listing vertical">
+              <!-- <div class="d-block d-md-flex listing vertical">
                 <a href="listingssingle" class="img d-block" style="background-image: url({% static 'images/img_2.jpg' %})"></a>
                 <div class="lh-content">
                   <span class="category">Real Estate</span>
@@ -355,7 +361,7 @@
                     <span class="review">(3 Reviews)</span>
                   </p>
                 </div>
-              </div>
+              </div> -->
 
             </div>
           </div>
@@ -380,10 +386,10 @@
               <a href="{% url 'category' iconn.id %}" class="popular-category h-100">
                 <span class="icon"><span class="{{iconn.clas}}"></span></span>
                 <span class="caption mb-2 d-block">{{iconn.category}}</span>
-                <span class="number">1,921</span>
+                <!-- <span class="number">12</span> -->
               </a>
               
-            </div>
+            </div>&nbsp;
             {% endfor %}
 
             <!-- <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
@@ -612,7 +618,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <li><a href="#">Testimonials</a></li>
+                  <!-- <li><a href="#">Testimonials</a></li> -->
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>

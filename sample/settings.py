@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
-    'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #myapps
-    'accounts'
+    'accounts',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
-                          'home.Authenticate.EmailBackend',]
+                          'home.authenticate.EmailBackend']
 
 
 # Internationalization

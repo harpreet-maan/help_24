@@ -15,18 +15,19 @@ from django.core.mail import EmailMessage
 from django.views.generic.base import View
 from django.db.models import Count, Q
 from django.core.paginator import Paginator
-
+from .models import category as koka
 # Create your views here.
 
-from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List, category,mailing
+from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List,mailing
 
 
 def index(request):
     finds = FindBusiness.objects.all()[:4]
     icons= FindBusiness.objects.all()
     news = Trending.objects.all()
+    business=Business_List.objects.all()[:5]
 
-    return render(request, 'index.html', {'finds': finds, 'news': news,'icons':icons})
+    return render(request, 'index.html', {'finds': finds, 'news': news,'business':business,'icons':icons})
 
 
 def about(request):
@@ -78,15 +79,16 @@ def list(request):
         Email=request.POST['email']
         Image=request.POST['image']
         Adescription=request.POST['description']
-
-        business=Business_List(business_name=Bname,pincode=pin,email=Email,category=category,
+        c2 = koka.objects.get(name = category)
+        business=Business_List(business_name=Bname,pincode=pin,email=Email,category=c2,
                                    phone=Bphone,address=Address,landmark=Landmark,website=Waddress,
                                     Description=Adescription,image="pics/"+Image)
         business.save()
         return redirect('/')
     
     else:
-        return render(request,'list.html')
+        cat = koka.objects.all()
+        return render(request,'list.html',{'cat':cat})
 
 
 def listings(request):
@@ -121,7 +123,7 @@ def listings(request):
 
 
     
-    return render(request, 'listings.html',{'business1':business1,'numbers':range(6)})
+    return render(request, 'listings.html',{'business1':business1})
 
 
 def listingssingle(request):
@@ -143,10 +145,15 @@ def login(request):
         
         user=auth.authenticate(username=use,password=pass1)
         
-        if user is not None:
+        if user is not None and user.is_user==True:
             auth.login(request,user)
             
             return redirect('/')
+        elif user is not None and user.is_businessOwner==True:
+            auth.login(request,user)
+            
+            return redirect('list.html')
+
         else:
             messages.info(request,"*Invalid Credentials")
             return redirect('login')
@@ -157,6 +164,8 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
+def forgotpassword(request):
+    return render(request,'forgotpassword.html')
 
 
 def register(request):
@@ -195,13 +204,17 @@ def register(request):
                     # user.save()
                 
                 user1.is_active=False
-                user1.save();
+                user1.save()
 
                 current_site=get_current_site(request)
+                
+
+                
 
                 subject='Activate your Account'
                 message=render_to_string('activate_account.html',{
                     'user':user1,
+                    'current_site':current_site,
                     'domain':current_site.domain,
                     'uid':urlsafe_base64_encode(force_bytes(user1.pk)),
                     'token': account_activation_token.make_token(user1),
@@ -226,27 +239,32 @@ def register(request):
 
 
 
-class ActivateAccount(View):
+# class ActivateAccount(View):
 
-    def get(self, request, uidb64, token, *args, **kwargs):
-        try:
+# def get(self, request, uidb64, token, *args, **kwargs):
+def activateAccount(request,uidb64,token):
+    try:
             #uid = force_text(urlsafe_base64_decode(uidb64))
-            uid = urlsafe_base64_decode(uidb64).decode()
-            user = User.objects.get(pk=uid)
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Users.objects.get(pk=uid) 
             #user.pk=uid
-            print(user)
-        except (TypeError, ValueError, OverflowError, user.DoesNotExist):
-            user = None
+        
+    except:
 
-        if user is not None and account_activation_token.check_token(user, token):
-            user.is_active = True
-            user.save()
-            login(request)
-            messages.success(request, ('Your account have been confirmed.'))
-            return render(request,'index.html')
-        else:
-            messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
-            return redirect('/Thanks')
+        user = None
+
+        # except (TypeError, ValueError, OverflowError, user.DoesNotExist):
+        #     user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request)
+        messages.success(request, ('Your account have been confirmed.'))
+        return render(request,'login.html')
+    else:
+        messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
+        return redirect('/Thanks')
 
 
 

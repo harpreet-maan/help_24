@@ -16,8 +16,9 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
 
-    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/flaticon3/font1/flaticon.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'fonts/flaticon8/font/flaticon.css' %}"> 
+    <!-- <link rel="stylesheet" href="{% static 'fonts/flaticon8/font2/flaticon.css' %}"> -->
 
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
@@ -36,6 +37,7 @@
             <span class="icon"><span class=""></span></span>
             
         </a>
+        <span class="icon"><span class="flaticon-yelp"></span></span>
         <h3 style="color: white;">     <strong>for business owners</strong></h3>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="{% url 'login' %}" class="nav-link" style="color:bisque;"><strong>Login</strong></a></li>
@@ -57,7 +59,7 @@
                   
                   <div class="col-md-12">
                     <label class="text-black" for="pin">Pincode</label> 
-                    <input type="location" name="pincode" id="pin" class="form-control" placeholder="143401" required pattern="[0-9]+">
+                    <input type="location" name="pincode" id="pin" class="form-control" maxlength="6" placeholder="143401" required pattern="[0-9]+">
                   </div>
                 </div>
   
@@ -77,8 +79,10 @@
                     <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                       <select class="form-control" name="category" id="subject">
-                        <option value="">All Categories</option>
-                        <option value="" selected="">Plumbers</option>
+                        {% for c in cat %}
+                        <option value="{{c.name}}">{{c.name}}</option>
+                        {% endfor %}
+                        <!-- <option value="" selected="">Plumbers</option>
                         <option value="">Gyms </option>
                         <option value="">Carpenter</option>
                         <option value="">Electrician</option>
@@ -95,7 +99,7 @@
                         <option value="">Bakery</option>
                         <option value="">Restaurants</option>
                         <option value="">Grocery</option>
-                        <option value="">Cooks &amp; Maid</option>
+                        <option value="">Cooks &amp; Maid</option> -->
                       </select>
                     </div>
                   </div>
@@ -125,14 +129,14 @@
                   <div class="row form-group">
                     <div class="col-md-12">
                       <label class="text-black" for="subject">Web Address</label> 
-                      <input type="url" name="webaddress" id="subject" class="form-control" placeholder="www.yourbusinessaddress.com" required>
+                      <input type="url" name="webaddress" id="subject" class="form-control" placeholder="https://www.yourbusinessaddress.com">
                     </div>
                   </div>
 
                   <div class="row form-group">
                     <div class="col-md-12">
                       <label class="text-black" for="subject">Email</label> 
-                      <input type="email" name="email" id="subject" class="form-control" placeholder="name@yourservices.com" required  ​pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="enter valid email">
+                      <input type="email" name="email" id="subject" class="form-control" placeholder="name@yourservices.com"   ​pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="enter valid email">
                     </div>
                   </div>
 
@@ -176,7 +180,7 @@
                               <ul class="list-unstyled">
                                 <li><a href="{% url 'about' %}">About Us</a></li>
                                 <li><a href="{% url 'listings' %}">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
+                                <!--   -->
                                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
                               </ul>
                             </div>

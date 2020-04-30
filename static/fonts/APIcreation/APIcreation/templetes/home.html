@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div>
+    {% for i in video %}
+
+
+    <h2><a href="{% url 'details' pk=i.pk %}">{{i.title}}</a></h2>
+
+
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
