@@ -61,8 +61,9 @@
                     <li><a href="#">Careers</a></li>
                   </ul> -->
                 </li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
+                <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
+                <!-- <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li> -->
+                <li class="mr-5"><a href="{% url 'donor' %}">Donate Blood</a></li>
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 {% if user.is_authenticated %}
@@ -171,7 +172,7 @@
               <p class="mb-4"><a href="#">+91 98765-43219</a></p>
 
               <p class="mb-0 font-weight-bold">Email Address</p>
-              <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+              <p class="mb-0"><a href="#">ahelp247@gmail.com</a></p>
 
             </div>
             
@@ -203,13 +204,13 @@
 
               <div class="collapse" id="collapse-1">
                 <div class="pt-2">
-                  <p class="mb-0">You just click on the add listing and fill out the specific details of about your services which you are gonna Provide.  </p>
+                  <p class="mb-0">You have to first create account and login then you are able to add  your business details and specifications. </p>
                 </div>
               </div>
             </div>
 
             <div class="border p-3 rounded mb-2">
-              <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">Is this available in my country?</a>
+              <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">Is this available in my city?</a>
 
               <div class="collapse" id="collapse-4">
                 <div class="pt-2">
@@ -223,7 +224,7 @@
 
               <div class="collapse" id="collapse-2">
                 <div class="pt-2">
-                  <p class="mb-0">You can add your services free on help_24. If you want to advertise or features your business on top you have to pay bit cost.</p>
+                  <p class="mb-0">You can add your services free on help_24. </p>
                 </div>
               </div>
             </div>
@@ -281,7 +282,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <!-- <li><a href="#">Testimonials</a></li> -->
+                  <li><a href="{% url 'blog' %}">Blog</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -299,7 +300,8 @@
               <div class="input-group mb-3">
                 <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
+                  <!-- <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button> -->
+                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
                 </div>
               </div>
             </form>

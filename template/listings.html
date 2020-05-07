@@ -61,8 +61,9 @@
                     <li><a href="#">Careers</a></li>
                   </ul> -->
                 </li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
+                <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
+                <!-- <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li> -->
+                <li class="mr-5"><a href="{% url 'donor' %}">Donate Blood</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
                 <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
@@ -430,7 +431,7 @@
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="search " id="">
+                      <select class="form-control" name="search" id="">
                         <option value="">All Categories</option>
                         <option value="" selected="">Plumbers</option>
                         <option value="">Gyms</option>
@@ -485,25 +486,25 @@
                     <li>
                       <label for="option1">
                         <input type="checkbox" id="option1">
-                        Residential
+                        Sector1 - Sector15
                       </label>
                     </li>
                     <li>
                       <label for="option2">
                         <input type="checkbox" id="option2">
-                        Commercial
+                        Sector16 - Sector30
                       </label>
                     </li>
                     <li>
                       <label for="option3">
                         <input type="checkbox" id="option3">
-                        Industrial
+                        Sector31 - Sector45
                       </label>
                     </li>
                     <li>
                       <label for="option4">
                         <input type="checkbox" id="option4">
-                        Land
+                        Sector46 - Sector60
                       </label>
                     </li>
                   </ul>
@@ -539,17 +540,18 @@
               <a href={% url 'detail' pk=business.pk %} class="img d-block" style="background-image: url({{business.image.url}})"></a>
               <div class="lh-content">
                 <span class="category">{{business.category}}</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                <a href={% url 'detail' pk=business.pk %} class="bookmark"><span class="icon-heart"></span></a>
                 <h3><a href={% url 'detail' pk=business.pk %}>{{business.business_name}}</a></h3>
                 <address>{{business.address}}</address>
-                <p class="mb-0">
+                <h3><span style="font-weight:bolder;">Contact</span> : {{business.phone}}</h3>
+                <!-- <p class="mb-0">
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span class="review">(3 Reviews)</span>
-                </p>
+                </p> -->
               </div>
             </div>
             
@@ -754,6 +756,7 @@
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
                   <!-- <li><a href="#">Testimonials</a></li> -->
+                  <li><a href="{% url 'blog' %}">Blog</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -771,7 +774,8 @@
               <div class="input-group mb-3">
                 <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
+                  <!-- <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button> -->
+                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
                 </div>
               </div>
             </form>

@@ -16,18 +16,24 @@ from django.views.generic.base import View
 from django.db.models import Count, Q
 from django.core.paginator import Paginator
 from .models import category as koka
+from .models import bloodcategory 
 # Create your views here.
 
-from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List,mailing
+from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List,mailing,Donor_Register,DonorMessage
 
 
 def index(request):
+    
     finds = FindBusiness.objects.all()[:4]
     icons= FindBusiness.objects.all()
     news = Trending.objects.all()
-    business=Business_List.objects.all()[:5]
+    business=Business_List.objects.all()
+    bus=Business_List.objects.all()
+    a=len(bus)
+    b=a-6
+    business1=Business_List.objects.all()[b:a]
 
-    return render(request, 'index.html', {'finds': finds, 'news': news,'business':business,'icons':icons})
+    return render(request, 'index.html', {'finds': finds, 'news': news,'business':business,'icons':icons,'business1':business1})
 
 
 def about(request):
@@ -93,13 +99,18 @@ def list(request):
 
 def listings(request):
     business1=Business_List.objects.all()
+    bus=Business_List.objects.all()
+    a=len(bus)
+    b=a-6
+    business2=Business_List.objects.all()[b:a]
     #business2=Business_List.objects.all()
 
     search_query = request.GET.get('search')
     if search_query:
         business1 = business1.filter(
             Q(business_name__icontains = search_query) |
-            Q(category__name__icontains = search_query) 
+            Q(category__name__icontains = search_query) |
+            Q(address__icontains=search_query)
             # Q(condition__icontains = search_query) |
             # Q(brand__brand_name__icontains = search_query) |
             # Q(owner__username__icontains = search_query)
@@ -123,7 +134,7 @@ def listings(request):
 
 
     
-    return render(request, 'listings.html',{'business1':business1})
+    return render(request, 'listings.html',{'business1':business1,'business2':business2})
 
 
 def listingssingle(request):
@@ -231,6 +242,7 @@ def register(request):
         else:
             messages.info(request, '*Password not matching')
             return redirect('register')
+        messages.success(request, ('account confirmation link has been sent to your mail.'))
         return redirect('login')
 
 
@@ -261,10 +273,10 @@ def activateAccount(request,uidb64,token):
         user.save()
         login(request)
         messages.success(request, ('Your account have been confirmed.'))
-        return render(request,'login.html')
+        return redirect('login')
     else:
         messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
-        return redirect('/Thanks')
+        return redirect('Thanks')
 
 
 
@@ -275,10 +287,16 @@ def detail(request,pk):
 
 
 def  categoryList(request,id):
-    Category = category.objects.get(id = id)
+    Category = koka.objects.get(id = id)
+    bus=Business_List.objects.all()
+    a=len(bus)
+    b=a-6
+    business2=Business_List.objects.all()[b:a]
     business1 = Business_List.objects.filter(category = Category)
     context = {
-        "business1":business1
+        "business1":business1,
+        "business2":business2
+
     }
     return render(request,'listings.html',context)
 
@@ -317,3 +335,87 @@ def filtering(request):
 
     
     return render(request, 'filtering.html',{'business1':business1,'numbers':range(6)})
+
+
+def donor(request):
+    if request.method=='POST':
+        name=request.POST['form-username']
+        email=request.POST['form-email']
+        mobile=request.POST['form-phone']
+        bcategory=request.POST['form-category']
+        address=request.POST['form-address']
+        pincode=request.POST['form-pincode']
+        blod = bloodcategory.objects.get(name = bcategory)
+        donor=Donor_Register(donorname=name,email=email,phone=mobile,address=address,bloodcategory=blod,pincode=pincode)
+        donor.save()
+        return redirect('donorlist')
+    else:
+        blood1 = bloodcategory.objects.all()
+        
+
+        return render(request,'donorregister.html',{'blood1':blood1})
+
+def donorlist(request):
+    donor1=Donor_Register.objects.all()
+    #business2=Business_List.objects.all()
+    blood1 = bloodcategory.objects.all()
+
+    search_query = request.GET.get('search')
+    if search_query:
+        donor1 = donor1.filter(
+            # Q(business_name__icontains = search_query) |
+            Q(bloodcategory__name__icontains = search_query) |
+            Q(address__icontains = search_query)
+            # Q(condition__icontains = search_query) |
+            # Q(brand__brand_name__icontains = search_query) |
+            # Q(owner__username__icontains = search_query)
+         )
+
+    # s1=category
+    # if s1:
+    #     business1=business1.filter(
+    #         Q(category_icontains = search_query)
+    #     )       
+ 
+    
+    
+
+
+
+
+    paginator = Paginator(donor1, 4)
+    page = request.GET.get('page')
+    donor1 = paginator.get_page(page)
+
+
+    
+     
+    return render(request,'donorlist.html',{'donor1':donor1,'blood1':blood1})
+
+def messagedonor(request):
+    if request.method=="POST":
+        email=request.POST['form-email']
+        email1=request.POST['form-email1']
+        message=request.POST['form-message']
+        
+        receiver=DonorMessage(email1=email,email2=email1,message=message)
+        subject="Message From  " + email1
+        send_mail(
+            subject,
+            message,
+            'EMAIL_HOST_USER',
+            [email],
+            fail_silently=False
+
+
+
+        )
+        return render(request,'donorlist.html')
+
+    else:
+        return render(request,'donormessage.html')
+
+
+def thanks(request):
+    return render(request,'thanks.html')
+

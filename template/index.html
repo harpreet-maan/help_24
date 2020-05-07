@@ -68,8 +68,8 @@
                     <li><a href="#">Careers</a></li>
                   </ul> -->
                 </li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
+                <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
+                <li class="mr-5"><a href="{% url 'donor' %}">Donate Blood</a></li>
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 {% if user.is_authenticated %}
@@ -106,7 +106,7 @@
               <div class="col-md-8 text-center">
 
                 <h1 class="" data-aos="fade-up">Need help</h1>
-                <p data-aos="fade-up" data-aos-delay="100">Looking for Best services,here you Get. </p>
+                <p data-aos="fade-up" data-aos-delay="100">Looking for Best services,here you Find Everything. </p>
               </div>
             </div>
 
@@ -448,26 +448,27 @@
           </div>
         </div>
         <div class="row mt-5">
-          {% for new in news %}
+          {% for new in business1 %}
           <div class="col-lg-6">
             
            
 
             <div class="d-block d-md-flex listing">
-              <a href="listingssingle" class="img d-block" style="background-image: url({{new.img.url}})"></a>
+              <a href={% url 'detail' pk=new.pk %} class="img d-block" style="background-image: url({{new.image.url}})"></a>
               <div class="lh-content">
                 <span class="category">{{new.category}}</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="#">{{new.title}}</a></h3>
+                <a href={% url 'detail' pk=new.pk %} class="bookmark"><span class="icon-heart"></span></a>
+                <h3><a href={% url 'detail' pk=new.pk %}>{{new.business_name}}</a></h3>
                 <address>{{new.address}}</address>
-                <p class="mb-0">
+                <h3><span style="font-weight:bolder;">Contact</span> : {{new.phone}}</h3>
+                <!-- <p class="mb-0">
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span class="review">(3 Reviews)</span>
-                </p>
+                </p> -->
               </div>
             </div>
            
@@ -584,7 +585,7 @@
     </div>
 
     
-    <div class="newsletter bg-primary py-5">
+    <!-- <div class="newsletter bg-primary py-5">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
@@ -598,9 +599,9 @@
               <input type="submit" value="Subscribe" class="btn btn-white"> 
             </form>
           </div>
-        </div>
+        </div>       
       </div>
-    </div>
+    </div> -->
   
     
     <footer class="site-footer">
@@ -618,7 +619,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <!-- <li><a href="#">Testimonials</a></li> -->
+                  <li><a href="{% url 'blog' %}">Blog</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -636,8 +637,9 @@
               <div class="input-group mb-3">
                 <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search Services..." aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button
-                   class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
+                  <!-- <button
+                   class="btn btn-primary text-white" type="button" id="button-addon2">Search</button> -->
+                   <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
                 </div>
               </div>
             </form>

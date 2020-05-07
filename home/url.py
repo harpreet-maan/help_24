@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from . import views
+from django.contrib.auth import views as auth_views
+
 # from .views import ActivateAccount
 
 urlpatterns = [
@@ -27,6 +29,14 @@ urlpatterns = [
     path('logout',views.logout,name='logout'),
     path('activate/<uidb64>/<token>/', views.activateAccount, name='activate'),
     path('filtering',views.filtering,name='filtering'),
-    path('forgotpassword',views.forgotpassword,name='forgotpassword')
+    path('forgotpassword',views.forgotpassword,name='forgotpassword'),
+    path('donor',views.donor,name='donor'),
+    path('donorlist',views.donorlist,name='donorlist'),
+    path('messagedonor',views.messagedonor,name='messagedonor'),
+    path('password-reset', auth_views.PasswordResetView.as_view(template_name = 'forgotpassword.html'), name='reset_password'),
+    path('password-reset-done', auth_views.PasswordResetDoneView.as_view(template_name = 'forgotpasswordsent.html'), name='password_reset_done'),
+    path('password-reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name = 'resetpassword.html'), name='password_reset_confirm'),
+    path('password-reset_complete', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('thanks',views.thanks,name='thanks')
 
 ]

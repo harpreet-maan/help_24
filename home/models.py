@@ -70,3 +70,31 @@ class mailing(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Donor_Register(models.Model):
+    donorname=models.CharField(max_length=50)
+    email=models.EmailField(max_length=200)
+    bloodcategory = models.ForeignKey('bloodcategory',on_delete=models.CASCADE)
+    phone=models.BigIntegerField()
+    pincode=models.IntegerField()
+    address=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.donorname
+
+class bloodcategory(models.Model):
+    name = models.CharField(max_length=6)
+    
+    
+    def __str__(self):
+        return self.name
+
+
+class DonorMessage(models.Model):
+    email1=models.EmailField(max_length=100)
+    email2=models.EmailField(max_length=100)
+    message=models.TextField()
+
+    def __str__(self):
+        return self.email2

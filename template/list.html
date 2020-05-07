@@ -45,7 +45,7 @@
         </ul>
       </nav>
       
-    <div class="site-section bg-light">
+     
         <div class="container" style="margin-top: 20px;">
           <div class="row justify-content-center">
             <div class="col-md-7 mb-5"  data-aos="fade">
@@ -99,7 +99,7 @@
                         <option value="">Bakery</option>
                         <option value="">Restaurants</option>
                         <option value="">Grocery</option>
-                        <option value="">Cooks &amp; Maid</option> -->
+                        <option value="">Cooks &amp; Maid</optio<n> -->
                       </select>
                     </div>
                   </div>
@@ -180,7 +180,7 @@
                               <ul class="list-unstyled">
                                 <li><a href="{% url 'about' %}">About Us</a></li>
                                 <li><a href="{% url 'listings' %}">Services</a></li>
-                                <!--   -->
+                                <li><a href="{% url 'blog' %}">Blog</a></li>
                                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
                               </ul>
                             </div>
@@ -198,7 +198,8 @@
                             <div class="input-group mb-3">
                               <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
                               <div class="input-group-append">
-                                <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
+                                <!-- <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button> -->
+                                <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
                               </div>
                             </div>
                           </form>

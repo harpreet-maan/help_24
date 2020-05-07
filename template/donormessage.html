@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-{% load crispy_forms_tags %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -33,11 +32,11 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     </head>
-    <body class="bg-dark">
+    <body>
         
 
 
-    <!-- <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;opacity:0.8;">
         <div class="top-content">
             <div class="inner-bg">
                 <div class="container">
@@ -47,56 +46,49 @@
                             <h1><strong></strong>  </h1>                            
                         </div>
                     </div>
-                        <div class="col-sm-6 col-sm-offset-3 text">                        	
+                        <div class="col-sm-6 col-sm-offset-3 text" style="opacity: 1.2;">                        	
                         	<div class="form-box">
 	                        	<div class="form-top">
 	                        		<div class="form-top-left">
-	                        			<h2>Forgot Password</h2>
-	                            		<h5>Enter username or email address to get password:</h5>
+	                        			<h2 style="font-weight: bolder;">Send Mail</h2>
+	                            		<h4 style="font-style: italic;">Fill up following details :</h5>
 	                        		</div>
-	                        		<div class="form-top-right">
+	                        		<!-- <div class="form-top-right">
 	                        			<i class="fa fa-lock"></i>
-	                        		</div>
+	                        		</div> -->
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
+				                    <form role="form" action="{% url 'messagedonor' %}" method="POST" class="login-form">
                                         {% csrf_token %}
-				                    	{{form|crispy}}		
-
-                                            <button type="submit" class="btn col-sm-12">Submit</button>
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-email">Donor Email</label>
+				                        	<input type="email" name="form-email" style="font-size:18px;" placeholder="Donor Email" class="form-email form-control" id="form-email">
+                                        </div>		
+                                        <div class="form-group">
+				                    		<label class="sr-only" for="form-email1">Your Email</label>
+				                        	<input type="email" name="form-email1" style="font-size:18px;" placeholder="Your Email" class="form-email1 form-control" id="form-email1">
+                                        </div>	
+                                        <div class="form-group">
+				                    		<label class="sr-only" for="form-message">Enter Message</label>
+				                        	<textarea  name="form-message" cols="25" rows="8" placeholder="Enter Your Message..." class="form-message form-control" id="form-message"></textarea>
+				                        </div>			                        
+                                            <button type="submit" class="btn col-sm-12">Send</button>
                                             <br><br><br><br>
-                                        <div class="form-row ">
+                                        <!-- <div class="form-row ">
                                             <div class="form-group col-sm-6">
                                              <a class="btn btn-primary btn-lg py-2 px-4 text-white" href="{% url 'login' %}">Sign In</a>
                                             </div>
                                             <div class="form-group col-md-6">    
                                              <a class="btn btn-primary btn-lg py-2 px-4 text-white" href="{% url 'register' %}" style="float:right;">Sign Up</a>
-                                            </div>
+                                            </div> -->
 				                    </form>
                                 </div>
                             </div>
                         </div>
-                       
                 </div>
             </div>
-        </div> 
-        </div>   -->
-        <div class="site-section bg-dark">
-            <div class="container" style="margin-top: 20px;">
-                <div class="row justify-content-center">
-                    <div class="col-md-7 mb-5"  data-aos="fade">
-                        <h2 class="mb-5 text-white" style="text-align: center; font-weight:bolder;font-style: italic;">Forgot Password</h2>
-          
-                <form method = 'POST' action = '' class="p-5 bg-white">
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <input type='submit' class="btn btn-primary btn-lg" value = "Submit"/>
-            </form>
-            </div>
-            </div>
-            </div>
-            </div>
-                             
+        </div>   
+    
         <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/jquery.backstretch.min.js' %}"></script>

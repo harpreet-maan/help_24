@@ -55,8 +55,9 @@
                 <li>
                   <a href="{% url 'about' %}">About</a>
                 </li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li>
+                <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
+                <!-- <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li> -->
+                <li class="mr-5"><a href="{% url 'donor' %}">Donate Blood</a></li>
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
@@ -240,6 +241,7 @@
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
                   <!-- <li><a href="#">Testimonials</a></li> -->
+                  <li><a href="{% url 'blog' %}">Blog</a></li>
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -257,7 +259,8 @@
               <div class="input-group mb-3">
                 <input type="text" name='search' class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
+                  <!-- <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button> -->
+                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
                 </div>
               </div>
             </form>
