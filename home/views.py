@@ -17,6 +17,10 @@ from django.db.models import Count, Q
 from django.core.paginator import Paginator
 from .models import category as koka
 from .models import bloodcategory 
+from django.http import HttpResponse
+from accounts.models import Users as nav
+
+
 # Create your views here.
 
 from .models import FindBusiness, Trending, UserRegister, Business_detail,Business_List,mailing,Donor_Register,DonorMessage
@@ -378,7 +382,6 @@ def donorlist(request):
     #     )       
  
     
-    
 
 
 
@@ -419,3 +422,21 @@ def messagedonor(request):
 def thanks(request):
     return render(request,'thanks.html')
 
+
+class UpdateProfile(View):
+    def get(self,request):
+        return render(request,'update_profile.html')
+    def post(self,request):
+        email = request.POST.get("email")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        
+        a = nav.objects.get(username=request.user.username)
+        a.email = email
+        a.first_name = first_name
+        a.last_name = last_name
+        a.save()
+        messages.success(request, ('details Updated Successfully.'))
+        return redirect('update-profile')
+        
+    

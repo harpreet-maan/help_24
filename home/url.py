@@ -5,7 +5,7 @@ from django.urls import path, include
 
 from . import views
 from django.contrib.auth import views as auth_views
-
+from django.contrib.auth.decorators import login_required
 # from .views import ActivateAccount
 
 urlpatterns = [
@@ -37,6 +37,10 @@ urlpatterns = [
     path('password-reset-done', auth_views.PasswordResetDoneView.as_view(template_name = 'forgotpasswordsent.html'), name='password_reset_done'),
     path('password-reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name = 'resetpassword.html'), name='password_reset_confirm'),
     path('password-reset_complete', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('thanks',views.thanks,name='thanks')
+    path('thanks',views.thanks,name='thanks'),
+
+
+
+    path("update-profile",login_required(views.UpdateProfile.as_view()),name = "update-profile")
 
 ]
