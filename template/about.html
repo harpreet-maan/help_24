@@ -67,7 +67,11 @@
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 {% if user.is_authenticated %}
-                  <li class="active" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}</li>
+                  <li class="active has-children" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}
+                    <ul class="dropdown">
+                      <li><a href="{% url 'update-profile' %}">Update Profile</a></li>
+                    </ul>
+                  </li>
                   <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
                 {% else %}
                   <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
@@ -201,10 +205,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Rakesh Sharma</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;Mistri ka kaam karta hai, itni mehnat, itni height pe, dhool-mitti me. Tu mere saath Help_24, badhiya paisa hai, kaam achcha hai, ijjat hai aur kam se kam Rs 30,000 har mahine kama lega.&rdquo;</p>
+                <p>&ldquo;Snappy Reaction time &amp; works till the  activity is finished..&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -212,10 +216,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Aagam Singh</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;When I ring the bell to enter any customer’s house, I tell myself – come back with nothing less than a 5-star rating.&rdquo;</p>
+                <p>&ldquo;Home support has done once it more, considered today no warmth, made them pass by 12:45. can't beat the individuals, work or the cost.&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -224,10 +228,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_4.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Mandeep Singh</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;Tum jitna mehnat karoge, utni hi kamayi hogi. Koi limit nahi hai Help_24 mei&rdquo;</p>
+                <p>&ldquo;Fast,inviting &amp; reasonable Services. I certainly prescribe him to everybody for them.&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -236,7 +240,7 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_5.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Amanpreet Dhillon</p>
+                <p></p>
               </figure>
               <blockquote>
                 <p>&ldquo;Our greatest glory is not in never failing, but in rising up every time we fail. – Ralph Waldo Emerson&rdquo;</p>
@@ -265,7 +269,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <li><a href="{% url 'blog' %}">Blog</a></li>
+                  <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -295,9 +299,9 @@
             <div class="
             -top pt-5">
             <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             </p>
             </div>
           </div>

@@ -294,7 +294,7 @@ def  categoryList(request,id):
     Category = koka.objects.get(id = id)
     bus=Business_List.objects.all()
     a=len(bus)
-    b=a-6
+    b=a-6 
     business2=Business_List.objects.all()[b:a]
     business1 = Business_List.objects.filter(category = Category)
     context = {

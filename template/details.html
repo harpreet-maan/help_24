@@ -67,7 +67,11 @@
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 {% if user.is_authenticated %}
-                  <li class="active" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}</li>
+                  <li class="active has-children" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}
+                    <ul class="dropdown">
+                      <li><a href="{% url 'update-profile' %}">Update Profile</a></li>
+                    </ul>
+                  </li>
                   <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
                 {% else %}
                 <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
@@ -176,7 +180,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <li><a href="{% url 'blog' %}">Blog</a></li>
+                  <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -205,9 +209,9 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
             <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             </p>
             </div>
           </div>

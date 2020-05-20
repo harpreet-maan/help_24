@@ -66,6 +66,11 @@
                 <li class="mr-5"><a href="{% url 'donor' %}">Donate Blood</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
+                <li class="active has-children" style="color:wheat;"><span class="border-left pl-xl-4"></span>Hello, {{user}}
+                  <ul class="dropdown">
+                    <li><a href="{% url 'update-profile' %}">Update Profile</a></li>
+                  </ul>
+                </li>
                 <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
                 {% else %}
 
@@ -116,7 +121,7 @@
             <div class="card mb-3" style="max-width: 600px; height:200px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="{{business.image.url}}" class="card-img" alt="..." style="width:100%; height:14.6vw; object-fit:cover;">
+                  <img src="{{business.image.url}}" class="card-img" alt="..." style="width:100%; height:100%; object-fit:cover;">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -476,7 +481,7 @@
             </div> -->
 
             <div class="mb-5">
-              <form action="#" method="post">
+              <form action="{% url 'listings' %}" method="GET">
                 <div class="form-group">
                   <!-- <p>Category 'Real Estate' is selected</p> -->
                   <p>More filters</p>
@@ -485,29 +490,33 @@
                   <ul class="list-unstyled">
                     <li>
                       <label for="option1">
-                        <input type="checkbox" id="option1">
+                        <input type="checkbox" class="option1" name='search' onclick="onlyOne(this)">
                         Sector1 - Sector15
                       </label>
                     </li>
                     <li>
-                      <label for="option2">
-                        <input type="checkbox" id="option2">
+                      <label for="option1">
+                        <input type="checkbox" class="option1" name='search' onclick="onlyOne(this)">
                         Sector16 - Sector30
                       </label>
                     </li>
                     <li>
-                      <label for="option3">
-                        <input type="checkbox" id="option3">
+                      <label for="option1">
+                        <input type="checkbox" class="option1" name='search' onclick="onlyOne(this)">
                         Sector31 - Sector45
                       </label>
                     </li>
                     <li>
-                      <label for="option4">
-                        <input type="checkbox" id="option4">
+                      <label for="option1">
+                        <input type="checkbox" class="option1" name='search' onclick="onlyOne(this)">
                         Sector46 - Sector60
                       </label>
                     </li>
                   </ul>
+
+                </div>
+                <div class="col-md-12">
+                  <input type="submit" value="Submit" class="btn btn-primary py-2 px-4 text-white">
                 </div>
               </form>
             </div>
@@ -674,10 +683,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Rakesh Sharma</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;Mistri ka kaam karta hai, itni mehnat, itni height pe, dhool-mitti me. Tu mere saath Help_24, badhiya paisa hai, kaam achcha hai, ijjat hai aur kam se kam Rs 30,000 har mahine kama lega.&rdquo;</p>
+                <p>&ldquo;Snappy Reaction time &amp; works till the  activity is finished. &rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -685,10 +694,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Aagam Singh</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;When I ring the bell to enter any customer’s house, I tell myself – come back with nothing less than a 5-star rating.&rdquo;</p>
+                <p>&ldquo;Home support has done once it more, considered today no warmth, made them pass by 12:45. can't beat the individuals, work or the cost.&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -697,10 +706,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_4.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Mandeep Singh</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;Tum jitna mehnat karoge, utni hi kamayi hogi. Koi limit nahi hai Help_24 mei&rdquo;</p>
+                <p>&ldquo;Fast,inviting &amp; reasonable Services. I certainly prescribe him to everybody for them&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -709,7 +718,7 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_5.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Amanpreet Dhillon</p>
+                <p></p>
               </figure>
               <blockquote>
                 <p>&ldquo;Our greatest glory is not in never failing, but in rising up every time we fail. – Ralph Waldo Emerson&rdquo;</p>
@@ -722,7 +731,7 @@
     </div>
 
 
-    <div class="newsletter bg-primary py-5">
+    <!-- <div class="newsletter bg-primary py-5">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
@@ -738,7 +747,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     
     <footer class="site-footer">
       <div class="container">
@@ -756,7 +765,7 @@
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
                   <!-- <li><a href="#">Testimonials</a></li> -->
-                  <li><a href="{% url 'blog' %}">Blog</a></li>
+                  <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -785,9 +794,9 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
             <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+           
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             </p>
             </div>
           </div>
@@ -796,7 +805,14 @@
       </div>
     </footer>
   </div>
-
+  <script type="text/javascript">
+   	    function onlyOne(checkbox) {
+    var checkboxes = document.getElementsByName('search')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+    </script>
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-ui.js' %}"></script>
@@ -811,6 +827,7 @@
   <script src="{% static 'js/rangeslider.min.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
   </body>
 </html>

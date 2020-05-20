@@ -33,7 +33,7 @@
   </head>
   <body>
   
-  <div class="site-wrap">
+ <div class="site-wrap">
 
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
@@ -42,7 +42,9 @@
         </div>
       </div>
       <div class="site-mobile-menu-body"></div>
-    </div>
+    </div> 
+  </div>
+     
     
     <header class="site-navbar container py-0 " role="banner">
 
@@ -54,13 +56,15 @@
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
-
+             
+             
+              
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+               
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'listings' %}">Services</a></li>
-                <!-- <li class="has-children"> -->
-                  <li>
-                    <a href="{% url 'about' %}">About</a>
+                <li>
+                  <a href="{% url 'about' %}">About</a>
                   <!-- <ul class="dropdown">
                     <li><a href="#">The Company</a></li>
                     <li><a href="#">The Leadership</a></li>
@@ -69,17 +73,26 @@
                   </ul> -->
                 </li>
                 <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
+                <!-- <li class="mr-5"><a href="{% url 'contact' %}">Contact</a></li> -->
                 <li class="mr-5"><a href="{% url 'donor' %}">Donate Blood</a></li>
-                <li><a href="{% url 'login' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
+                <li><a href="{% url 'list' %}" class="btn btn-outline-light top-btn"><span class="ti-plus"></span>+ Add listing</a></li>
 
                 {% if user.is_authenticated %}
-                  <li class="active" style="color:blanchedalmond"><span class="border-left pl-xl-4"></span>Hello, {{user}}</li>
-                  <li class="ml-xl-3 "><a href="{% url 'logout' %}">LogOut</a></li>
+                  <li class="active has-children" style="color:wheat;"><span class="border-left pl-xl-4"></span>Hello, {{user}}
+                    <ul class="dropdown">
+                      <li><a href="{% url 'update-profile' %}">Update Profile</a></li>
+                    </ul>
+                  </li>
+                  <li class="ml-xl-3"><a href="{% url 'logout' %}">LogOut</a>
+                    
+                  </li>
+                  
                 {% else %}
                   <li class="ml-xl-3 login"><a href="{% url 'login' %}"><span class="border-left pl-xl-4"></span>Log In</a></li>
                   <li><a href="{% url 'register' %}" class="cta"><span class="bg-primary text-white rounded">Register</span></a></li>
                 {% endif %}
               </ul>
+            </div>
             </nav>
           </div>
 
@@ -105,7 +118,7 @@
             <div class="row justify-content-center mb-4">
               <div class="col-md-8 text-center">
 
-                <h1 class="" data-aos="fade-up">Need help</h1>
+                <h1 class="" data-aos="fade-up">Wanna help</h1>
                 <p data-aos="fade-up" data-aos-delay="100">Looking for Best services,here you Find Everything. </p>
               </div>
             </div>
@@ -493,11 +506,11 @@
           <div>
             <div class="testimonial">
               <figure class="mb-4">
-                <img src="{% static 'images/plumber.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Rakesh Sharma</p>
+                <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid mb-3">
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;Mistri ka kaam karta hai, itni mehnat, itni height pe, dhool-mitti me. Tu mere saath Help_24, badhiya paisa hai, kaam achcha hai, ijjat hai aur kam se kam Rs 30,000 har mahine kama lega.&rdquo;</p>
+                <p>&ldquo;Snappy Reaction time &amp; works till the  activity is finished.&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -505,10 +518,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Aagam Singh</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;When I ring the bell to enter any customer’s house, I tell myself – come back with nothing less than a 5-star rating.&rdquo;</p>
+                <p>&ldquo;Home support has done once it more, considered today no warmth, made them pass by 12:45. can't beat the individuals, work or the cost.&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -517,10 +530,10 @@
             <div class="testimonial">
               <figure class="mb-4">
                 <img src="{% static 'images/person_4.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Mandeep Singh</p>
+                <p></p>
               </figure>
               <blockquote>
-                <p>&ldquo;Tum jitna mehnat karoge, utni hi kamayi hogi. Koi limit nahi hai Help_24 mei&rdquo;</p>
+                <p>&ldquo;Fast,inviting &amp; reasonable Services. I certainly prescribe him to everybody for them.&rdquo;</p>
               </blockquote>
             </div>
           </div>
@@ -528,8 +541,8 @@
           <div>
             <div class="testimonial">
               <figure class="mb-4">
-                <img src="{% static 'images/beautician.jpg' %}" alt="Image" class="img-fluid mb-3">
-                <p>Amanpreet Dhillon</p>
+                <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid mb-3">
+                <p></p>
               </figure>
               <blockquote>
                 <p>&ldquo;Our greatest glory is not in never failing, but in rising up every time we fail. – Ralph Waldo Emerson&rdquo;</p>
@@ -554,7 +567,7 @@
         <div class="row mb-3 align-items-stretch">
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
             <div class="h-entry">
-              <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid rounded">
+              <img src="{% static 'images/policy.jpg' %}" alt="Image" class="img-fluid rounded" style="width:100%; height:100%;">
               <h2 class="font-size-regular"><a href="#" class="text-black">Company Updates</a></h2>
               <div class="meta mb-3">by Mark Spiker<span class="mx-1">&bullet;</span> March 29, 2020 <span class="mx-1">&bullet;</span> <a href="#">News</a></div>
               <p>Help_24, Chandigarh’s leading home services marketplace, has rolled out COVID-19 health insurance and income protection cover for all its service professionals active on its platform in Chandigarh. </p>
@@ -562,7 +575,7 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
             <div class="h-entry">
-              <img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid rounded">
+              <img src="{% static 'images/hygiene.jpg' %}" alt="Image" class="img-fluid rounded" style="width:100%; height:100%;">
               <h2 class="font-size-regular"><a href="#" class="text-black">Company Updates</a></h2>
               <div class="meta mb-3">by Mark Spiker<span class="mx-1">&bullet;</span> March 25, 2020 <span class="mx-1">&bullet;</span> <a href="#">News</a></div>
               <p>At Help_24, the health and safety of our customers, service professionals and employees is our highest priority. Given the concerns around the spread of Coronavirus, we have ramped up our commitment towards ensuring a hygienic and safe at- home service experience.</p>
@@ -570,16 +583,16 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
             <div class="h-entry">
-              <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid rounded">
+              <img src="{% static 'images/airconditioner.jpg' %}" alt="Image" class="img-fluid rounded" style="width:100%; height:70%;">
               <h2 class="font-size-regular"><a href="#" class="text-black">Company Updates</a></h2>
               <div class="meta mb-3">by Mark Spiker<span class="mx-1">&bullet;</span> Feb 20, 2020 <span class="mx-1">&bullet;</span> <a href="#">Blog by Experts</a></div>
               <p>Air conditioners have become a must-have appliance in our homes today. But did you know they can be fatal if not handled properly? There are some safety measure you must follow when installing, operating and repairing your AC unit.</p>
             </div>
           </div>
 
-          <div class="col-12 text-center mt-4">
+          <!-- <div class="col-12 text-center mt-4">
             <a href="blog" class="btn btn-primary rounded py-2 px-4 text-white">View All Posts</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -619,7 +632,7 @@
                 <ul class="list-unstyled">
                   <li><a href="{% url 'about' %}">About Us</a></li>
                   <li><a href="{% url 'listings' %}">Services</a></li>
-                  <li><a href="{% url 'blog' %}">Blog</a></li>
+                  <!-- <li><a href="{% url 'blog' %}">Blog</a></li> -->
                   <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
               </div>
@@ -649,9 +662,9 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
             <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+           
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             </p>
             </div>
           </div>
